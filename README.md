@@ -10,7 +10,7 @@ GET localhost:8080/api/v1/saga
 
 ```
 Lista todos filmes Star Wars.
-GET GET localhost:8080/api/v1/films
+GET localhost:8080/api/v1/films
 ```
 
 ```
