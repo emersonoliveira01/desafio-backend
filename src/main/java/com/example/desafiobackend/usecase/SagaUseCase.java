@@ -21,17 +21,23 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SagaUseCase {
+
     private final SagaRepository sagaRepository;
+
     private final FilmRepository filmRepository;
+
     private final DetailRepository detailRepository;
+
     public List<SagaResponse> getSaga() {
         List<Saga> starWars = sagaRepository.findAll();
         return Mapper.mapperList(starWars, SagaResponse.class);
     }
+
     public List<FilmResponse> getFilms() {
         List<Film> films = filmRepository.findAll();
         return Mapper.mapperList(films, FilmResponse.class);
     }
+
     public DetailResponse getDetail(Long filmID) {
         Optional<Detail> byId = detailRepository.findById(filmID);
         if (byId.isPresent()) {
@@ -39,6 +45,7 @@ public class SagaUseCase {
         }
         throw new DetailNotFoundException("Detalhe do filme não encontrado.");
     }
+
     public FilmResponse changeDescriptionFilm(Long id, String description) {
 
         Optional<Film> byId = filmRepository.findById(id);
@@ -54,6 +61,7 @@ public class SagaUseCase {
 
         throw new FilmNotFoundException("Filme não encontrado.");
     }
+
     private Integer incrementVersion(Integer version) {
        return version + 1;
     }
