@@ -14,19 +14,24 @@ import java.util.List;
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class SagaController {
+
     private final SagaUseCase sagaUseCase;
+
     @GetMapping("/saga")
     public ResponseEntity<List<SagaResponse>> getSaga() {
         return ResponseEntity.ok(sagaUseCase.getSaga());
     }
+
     @GetMapping("/films")
     public ResponseEntity<List<FilmResponse>> findAllFilm() {
         return ResponseEntity.ok(sagaUseCase.getFilms());
     }
     @GetMapping("/films/detail/{id}")
+
     public ResponseEntity<DetailResponse> getDetail(@PathVariable(value = "id") Long id) {
         return ResponseEntity.ok(sagaUseCase.getDetail(id));
     }
+
     @PutMapping("/film/{id}")
     public ResponseEntity<FilmResponse> update(@PathVariable(value = "id") Long id,
                                                @RequestParam String description) {
